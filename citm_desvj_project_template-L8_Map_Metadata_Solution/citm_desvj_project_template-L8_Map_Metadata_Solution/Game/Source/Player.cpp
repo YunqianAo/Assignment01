@@ -12,6 +12,26 @@
 Player::Player() : Entity(EntityType::PLAYER)
 {
 	name.Create("Player");
+
+	name.Create("players");
+	idleAnim1.PushBack({ 1, 0, 14,17 });
+	idleAnim1.loop = true;
+	idleAnim1.speed = 0.001f;
+
+	leftAnim1.PushBack({ 1, 36, 14, 17 });
+	leftAnim1.PushBack({ 17,36, 14, 17 });
+	leftAnim1.PushBack({ 33, 36, 14, 17 });
+	leftAnim1.loop = true;
+	leftAnim1.speed = 0.1f;
+
+	rightAnim1.PushBack({ 2, 54, 14, 17 });
+	rightAnim1.PushBack({ 18, 54, 14, 17 });
+	rightAnim1.PushBack({ 34, 54, 14, 17 });
+	rightAnim1.loop = true;
+	rightAnim1.speed = 0.1f;
+
+	//in constructor
+	
 }
 
 Player::~Player() {
@@ -29,7 +49,10 @@ bool Player::Awake() {
 bool Player::Start() {
 
 	texture = app->tex->Load(config.attribute("texturePath").as_string());
+	
+	currentAnim1 = &idleAnim1;
 
+	remainingJumpSteps = 0;
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	app->tex->GetSize(texture, texW, texH);
 	pbody = app->physics->CreateCircle(position.x, position.y, texW / 2, bodyType::DYNAMIC);
@@ -61,6 +84,14 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		velocity.x = 0.2*dt;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+		remainingJumpSteps = 6;
+		if (remainingJumpSteps > 0) {
+			pbody->body->ApplyForce(b2Vec2(0, -1000), pbody->body->GetWorldCenter(),true);
+			remainingJumpSteps--;
+		}
 	}
 		
 	pbody->body->SetLinearVelocity(velocity);
