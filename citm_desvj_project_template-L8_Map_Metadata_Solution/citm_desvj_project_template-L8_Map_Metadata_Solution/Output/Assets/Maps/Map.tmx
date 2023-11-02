@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="17" tileheight="17" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="20" tilewidth="17" tileheight="17" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="tilemap" tilewidth="18" tileheight="18" spacing="1" tilecount="112" columns="16">
+  <image source="kenney_pixel-platformer-food-expansion/Tilemap/tilemap.png" width="303" height="132"/>
+  <wangsets>
+   <wangset name="未命名集" type="mixed" tile="-1">
+    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
+    <wangcolor name="" color="#00ff00" tile="-1" probability="1"/>
+   </wangset>
+  </wangsets>
+ </tileset>
  <layer id="1" name="图块层 1" width="100" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
