@@ -22,6 +22,8 @@ public:
 
 	bool Update(float dt);
 
+	bool PostUpdate();
+
 	bool CleanUp();
 
 	// L07 DONE 6: Define OnCollision function for the player. 
@@ -51,6 +53,7 @@ public:
 
 	bool jumpTimer;
 	int framesJump;
+	int jumpForce;
 
 
 	const char* texturePath;

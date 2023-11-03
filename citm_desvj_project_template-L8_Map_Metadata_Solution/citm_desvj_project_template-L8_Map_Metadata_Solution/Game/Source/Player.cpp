@@ -55,7 +55,7 @@ bool Player::Start() {
 	remainingJumpSteps = 0;
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	app->tex->GetSize(texture, texW, texH);
-	pbody = app->physics->CreateCircle(position.x, position.y, texW / 2, bodyType::DYNAMIC);
+	pbody = app->physics->CreateCircle(position.x, position.y, 8, bodyType::DYNAMIC);
 
 	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
 	pbody->listener = this;
@@ -66,12 +66,14 @@ bool Player::Start() {
 	//initialize audio effect
 	pickCoinFxId = app->audio->LoadFx(config.attribute("coinfxpath").as_string());
 
-
+	jumpForce = 0;
 	return true;
 }
 
 bool Player::Update(float dt)
 {
+
+	currentAnim1 = &idleAnim1;
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
 	//L03: DONE 4: render the player texture and modify the position of the player using WSAD keys and render the texture
@@ -90,24 +92,35 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
 		remainingJumpSteps = 20;
+		jumpForce = 100;
 		
 	}
 	if (remainingJumpSteps > 0) {
-		pbody->body->ApplyForce(b2Vec2(0, -1000), pbody->body->GetWorldCenter(), true);
+		pbody->body->ApplyForce(b2Vec2(0, -jumpForce), pbody->body->GetWorldCenter(), true);
+		jumpForce = jumpForce - 5;
 		remainingJumpSteps--;
 	}
+
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 
-	app->render->DrawTexture(texture,position.x,position.y);
+	/*app->render->DrawTexture(texture,position.x,position.y);*/
 
+	
+	currentAnim1->Update();
 	return true;
 }
 
 bool Player::CleanUp()
 {
+	return true;
+}
+
+bool Player::PostUpdate() {
+	SDL_Rect rect = currentAnim1->GetCurrentFrame();
+	app->render->DrawTexture(texture, position.x +28, position.y +25, &rect);
 	return true;
 }
 

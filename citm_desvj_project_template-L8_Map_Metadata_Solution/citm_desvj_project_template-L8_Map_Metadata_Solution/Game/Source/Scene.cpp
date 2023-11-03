@@ -103,6 +103,8 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
+	player->PostUpdate();
+
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
