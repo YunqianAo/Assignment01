@@ -42,7 +42,7 @@ bool Player::Awake() {
 
 	//L03: DONE 2: Initialize Player parameters
 	position = iPoint(config.attribute("x").as_int(), config.attribute("y").as_int());
-
+	
 	return true;
 }
 
@@ -79,21 +79,23 @@ bool Player::Update(float dt)
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		currentAnim1 = &leftAnim1;
 		velocity.x = -0.2*dt;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		currentAnim1 = &rightAnim1;
 		velocity.x = 0.2*dt;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		remainingJumpSteps = 6;
-		if (remainingJumpSteps > 0) {
-			pbody->body->ApplyForce(b2Vec2(0, -1000), pbody->body->GetWorldCenter(),true);
-			remainingJumpSteps--;
-		}
-	}
+	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
+		remainingJumpSteps = 20;
 		
+	}
+	if (remainingJumpSteps > 0) {
+		pbody->body->ApplyForce(b2Vec2(0, -1000), pbody->body->GetWorldCenter(), true);
+		remainingJumpSteps--;
+	}
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
