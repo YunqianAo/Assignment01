@@ -212,13 +212,13 @@ bool Map::Load(SString mapFileName)
         // L07 DONE 3: Create colliders      
         // L07 DONE 7: Assign collider type
         // Later you can create a function here to load and create the colliders from the map
-        PhysBody* c1 = app->physics->CreateRectangle(224 + 128, 544 + 32, 256, 64, STATIC);
+        PhysBody* c1 = app->physics->CreateRectangle(0+14*18/2,11.5*18 , 18*14, 18, STATIC);
         c1->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c2 = app->physics->CreateRectangle(352 + 64, 384 + 32, 128, 64, STATIC);
+        PhysBody* c2 = app->physics->CreateRectangle(17.5*18+2*18/2, 11.5*18, 18*3, 18, STATIC);
         c2->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c3 = app->physics->CreateRectangle(256, 704 + 32, 576, 64, STATIC);
+        PhysBody* c3 = app->physics->CreateRectangle(21.5 * 18 + 2 * 18 / 2, 11.5 * 18, 18 * 3, 18, STATIC);
         c3->ctype = ColliderType::PLATFORM;
 
           // L05: DONE 5: LOG all the data loaded iterate all tilesetsand LOG everything
