@@ -19,7 +19,12 @@
   </window>
 
   <scene>
-    <player x="120" y="280" texturePath="Assets/Textures/player.png" coinfxpath="Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg" texturePath1="Assets/Textures/idle/ninja idle -Sheet.png" texturePath2="Assets/Textures/Crouch walking/walk cycle/ninja walk -Sheet2.png" texturePath3="Assets/Textures/walk cycle/ninja walk -Sheet.png"/>
+	  <player x="120" y="280" texturePath="Assets/Textures/player.png" coinfxpath="Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg"
+		texturePath1="Assets/Textures/idle/ninja idle -Sheet.png"
+		texturePath2="Assets/Textures/walk cycle/ninja walk -Sheet.png"
+		texturePath3="Assets/Textures/walk cycle/ninja walk -Sheet2.png"
+		texturePath4="Assets/Textures/Basic Frames/jump.png"
+		texturePath5="Assets/Textures/Death/death-Sheet.png"/>
     <map path="Assets/Maps/" name="Map.tmx"/>
     <item x="216" y="144" texturepath="Assets/Textures/goldCoin.png"/>
     <item x="360" y="144" texturepath="Assets/Textures/goldCoin.png"/>

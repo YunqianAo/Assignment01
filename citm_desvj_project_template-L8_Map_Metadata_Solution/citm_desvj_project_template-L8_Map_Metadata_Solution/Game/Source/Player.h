@@ -54,6 +54,7 @@ public:
 	bool jumpTimer;
 	int framesJump;
 	int jumpForce;
+	int death;
 
 
 	const char* texturePath;
