@@ -4532,6 +4532,9 @@
   </data>
  </layer>
  <layer id="6" name="Bg" width="150" height="30">
+  <properties>
+   <property name="Draw" type="bool" value="true"/>
+  </properties>
   <data>
    <tile gid="287"/>
    <tile gid="287"/>
