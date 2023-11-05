@@ -76,11 +76,34 @@ bool Map::Update(float dt)
                 }
             }
         }
+        if (mapLayer->data->properties.GetProperty("Collider") != NULL && colLoaded == false) { // Colliders
 
+            for (int x = 0; x < mapLayer->data->width; x++)
+            {
+                for (int y = 0; y < mapLayer->data->height; y++)
+                {
+                    // Complete the draw function
+                    int gid = mapLayer->data->Get(x, y);
 
+                    if (gid > 0) {
+                        TileSet* tileset = GetTilesetFromTileId(gid);
+                        SDL_Rect r = tileset->GetRect(gid);
+                        iPoint pos = MapToWorld(x, y);
+                        if (mapLayer->data->properties.GetProperty("Collider")->value == 1) {
+                            PhysBody* c0 = app->physics->CreateRectangle(pos.x + 9, pos.y + 9,18, 18, STATIC); // pos + 18/2
+                            c0->ctype = ColliderType::PLATFORM;
+                        }
+                        
+
+                    }
+                }
+            }
+        }
         mapLayer = mapLayer->next;
     }
+    colLoaded = true;
     return ret;
+
 }
 
 // L08: DONE 2: Implement function to the Tileset based on a tile id
@@ -212,40 +235,38 @@ bool Map::Load(SString mapFileName)
         // L07 DONE 3: Create colliders      
         // L07 DONE 7: Assign collider type
         // Later you can create a function here to load and create the colliders from the map
-        PhysBody* c1 = app->physics->CreateRectangle(0+14*18/2,11.5*18 , 18*14, 18, STATIC);
-        c1->ctype = ColliderType::PLATFORM;
+        //PhysBody* c1 = app->physics->CreateRectangle(0+14*18/2,11.5*18 , 18*14, 18, STATIC);
+        //c1->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c2 = app->physics->CreateRectangle(17.5*18+2*18/2, 11.5*18, 18*3, 18, STATIC);
-        c2->ctype = ColliderType::PLATFORM;
+        //PhysBody* c2 = app->physics->CreateRectangle(17.5*18+2*18/2, 11.5*18, 18*3, 18, STATIC);
+        //c2->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c3 = app->physics->CreateRectangle(21.5 * 18 + 2 * 18 / 2, 11.5 * 18, 18 * 3, 18, STATIC);
-        c3->ctype = ColliderType::PLATFORM;
+        //PhysBody* c3 = app->physics->CreateRectangle(21.5 * 18 + 2 * 18 / 2, 11.5 * 18, 18 * 3, 18, STATIC);
+        //c3->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c4 = app->physics->CreateRectangle(21.5 * 18+3*18 + 2 * 18 / 2, 11.5 * 18+18, 18 * 3, 18, STATIC);
-        c4->ctype = ColliderType::PLATFORM;
+        //PhysBody* c4 = app->physics->CreateRectangle(21.5 * 18+3*18 + 2 * 18 / 2, 11.5 * 18+18, 18 * 3, 18, STATIC);
+        //c4->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c5 = app->physics->CreateRectangle(9.5*18, 10.5*18, 18, 18, STATIC);
-        c5->ctype = ColliderType::PLATFORM;
+        //PhysBody* c5 = app->physics->CreateRectangle(9.5*18, 10.5*18, 18, 18, STATIC);
+        //c5->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c6 = app->physics->CreateRectangle(12.5 * 18, 9.5 * 18, 18*3, 18, STATIC);
-        c6->ctype = ColliderType::PLATFORM;
+        //PhysBody* c6 = app->physics->CreateRectangle(12.5 * 18, 9.5 * 18, 18*3, 18, STATIC);
+        //c6->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c7 = app->physics->CreateRectangle(23 * 18 + 3 * 18 + 2 * 18 / 2, 8.5 * 18 + 18, 18 * 2, 18, STATIC);
-        c7->ctype = ColliderType::PLATFORM;
+        //PhysBody* c7 = app->physics->CreateRectangle(23 * 18 + 3 * 18 + 2 * 18 / 2, 8.5 * 18 + 18, 18 * 2, 18, STATIC);
+        //c7->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c8 = app->physics->CreateRectangle(27 * 18 + 3 * 18 + 2 * 18 / 2, 13.5 * 18 + 18, 18 * 4, 18, STATIC);
-        c8->ctype = ColliderType::PLATFORM;
+        //PhysBody* c8 = app->physics->CreateRectangle(27 * 18 + 3 * 18 + 2 * 18 / 2, 13.5 * 18 + 18, 18 * 4, 18, STATIC);
+        //c8->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c9 = app->physics->CreateRectangle(33.5 * 18 + 3 * 18 + 2 * 18 / 2, 14.5 * 18 + 18, 18 * 3, 18, STATIC);
-        c9->ctype = ColliderType::PLATFORM;
+        //PhysBody* c9 = app->physics->CreateRectangle(33.5 * 18 + 3 * 18 + 2 * 18 / 2, 14.5 * 18 + 18, 18 * 3, 18, STATIC);
+        //c9->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c10 = app->physics->CreateRectangle(27.5 * 18 + 3 * 18 + 2 * 18 / 2, 5*18, 18*3 , 180, STATIC);
-        c10->ctype = ColliderType::PLATFORM;
+        //PhysBody* c10 = app->physics->CreateRectangle(27.5 * 18 + 3 * 18 + 2 * 18 / 2, 5*18, 18*3 , 180, STATIC);
+        //c10->ctype = ColliderType::PLATFORM;
 
-        PhysBody* c11 = app->physics->CreateRectangle(16.5 * 18 + 3 * 18 + 2 * 18 / 2, 8.5 * 18 + 18, 18 * 3, 18, STATIC);
-        c11->ctype = ColliderType::PLATFORM;
-
-       
+        //PhysBody* c11 = app->physics->CreateRectangle(16.5 * 18 + 3 * 18 + 2 * 18 / 2, 8.5 * 18 + 18, 18 * 3, 18, STATIC);
+        //c11->ctype = ColliderType::PLATFORM;
 
           // L05: DONE 5: LOG all the data loaded iterate all tilesetsand LOG everything
         if (ret == true)

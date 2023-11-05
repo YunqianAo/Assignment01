@@ -138,6 +138,7 @@ public:
 private:
     // L05: DONE 1: Declare a variable data of the struct MapData
     MapData mapData;
+    bool colLoaded = false;
     bool mapLoaded;
 };
 
