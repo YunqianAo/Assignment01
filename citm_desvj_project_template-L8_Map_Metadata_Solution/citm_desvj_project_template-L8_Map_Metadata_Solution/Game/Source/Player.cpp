@@ -14,19 +14,24 @@ Player::Player() : Entity(EntityType::PLAYER)
 	name.Create("Player");
 
 	name.Create("players");
-	idleAnim1.PushBack({ 1, 0, 14,17 });
+	idleAnim1.PushBack({ 0, 0, 16,15 });
+	idleAnim1.PushBack({ 16, 0, 16,15 });
+	idleAnim1.PushBack({ 16*2, 0, 16,15 });
+	idleAnim1.PushBack({ 16 * 3, 0, 16,15 });
+	idleAnim1.PushBack({ 16 * 4, 0, 16,15 });
+	idleAnim1.PushBack({ 16 * 5, 0, 16,15 });
 	idleAnim1.loop = true;
 	idleAnim1.speed = 0.001f;
 
-	leftAnim1.PushBack({ 1, 36, 14, 17 });
-	leftAnim1.PushBack({ 17,36, 14, 17 });
-	leftAnim1.PushBack({ 33, 36, 14, 17 });
+	leftAnim1.PushBack({ 0, 0, 16,15 });
+	leftAnim1.PushBack({ 16, 0, 16,15 });
+	leftAnim1.PushBack({ 16 * 2, 0, 16,15 });
 	leftAnim1.loop = true;
 	leftAnim1.speed = 0.1f;
 
-	rightAnim1.PushBack({ 2, 54, 14, 17 });
-	rightAnim1.PushBack({ 18, 54, 14, 17 });
-	rightAnim1.PushBack({ 34, 54, 14, 17 });
+	rightAnim1.PushBack({ 0, 0, 16,15 });
+	rightAnim1.PushBack({ 16, 0, 16,15 });
+	rightAnim1.PushBack({ 16 * 2, 0, 16,15 });
 	rightAnim1.loop = true;
 	rightAnim1.speed = 0.1f;
 
@@ -48,7 +53,7 @@ bool Player::Awake() {
 
 bool Player::Start() {
 
-	texture = app->tex->Load(config.attribute("texturePath").as_string());
+	texture = app->tex->Load(config.attribute("texturePath1").as_string());
 	
 	currentAnim1 = &idleAnim1;
 
@@ -81,11 +86,13 @@ bool Player::Update(float dt)
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		texture = app->tex->Load(config.attribute("texturePath2").as_string());
 		currentAnim1 = &leftAnim1;
 		velocity.x = -0.2*dt;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		texture = app->tex->Load(config.attribute("texturePath3").as_string());
 		currentAnim1 = &rightAnim1;
 		velocity.x = 0.2*dt;
 	}
