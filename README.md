@@ -6,3 +6,10 @@
 * M->Animation of death
 * F9->Visualize the colliders / logic
 * F11->Enable/Disable FPS cap to 30
+
+## Developers
+
+ - Yunqian Ao
+
+ - Sergio Corona
+
