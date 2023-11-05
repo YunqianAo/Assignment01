@@ -32,7 +32,7 @@ bool Item::Start() {
 	
 	// L07 DONE 4: Add a physics to an item - initialize the physics body
 	app->tex->GetSize(texture, texW, texH);
-	pbody = app->physics->CreateCircle(position.x + texH / 2, position.y + texH / 2, texH / 2, bodyType::DYNAMIC);
+	pbody = app->physics->CreateCircle(position.x + texH / 2, position.y + texH / 2, 8, bodyType::DYNAMIC);
 
 	// L07 DONE 7: Assign collider type
 	pbody->ctype = ColliderType::ITEM;

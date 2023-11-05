@@ -245,6 +245,8 @@ bool Map::Load(SString mapFileName)
         PhysBody* c11 = app->physics->CreateRectangle(16.5 * 18 + 3 * 18 + 2 * 18 / 2, 8.5 * 18 + 18, 18 * 3, 18, STATIC);
         c11->ctype = ColliderType::PLATFORM;
 
+       
+
           // L05: DONE 5: LOG all the data loaded iterate all tilesetsand LOG everything
         if (ret == true)
         {

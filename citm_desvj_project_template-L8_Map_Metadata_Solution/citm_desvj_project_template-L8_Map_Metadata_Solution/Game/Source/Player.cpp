@@ -110,6 +110,13 @@ bool Player::Update(float dt)
 	app->render->camera.x = -position.x*4+200;
 
 	app->render->camera.y = -position.y*4+200;
+
+	PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
+	c12->ctype = ColliderType::UNKNOWN;
+
+	/*if (OnCollision(pbody,c12) {
+		
+	}*/
 	
 	currentAnim1->Update();
 	return true;
@@ -123,6 +130,7 @@ bool Player::CleanUp()
 bool Player::PostUpdate() {
 	SDL_Rect rect = currentAnim1->GetCurrentFrame();
 	app->render->DrawTexture(texture, position.x +28, position.y +25, &rect);
+
 	return true;
 }
 
@@ -139,6 +147,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");
+		
+		
 		break;
 	default:
 		break;
