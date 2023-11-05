@@ -150,8 +150,8 @@ bool Player::Update(float dt)
 
 	app->render->camera.y = -position.y*3+200;
 
-	/*PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
-	c12->ctype = ColliderType::UNKNOWN;*/
+	//PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
+	//c12->ctype = ColliderType::UNKNOWN;
 
 	/*if (OnCollision(pbody,c12) {
 		

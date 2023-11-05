@@ -90,7 +90,7 @@ bool Map::Update(float dt)
                         SDL_Rect r = tileset->GetRect(gid);
                         iPoint pos = MapToWorld(x, y);
                         if (mapLayer->data->properties.GetProperty("Collider")->value == 1) {
-                            PhysBody* c0 = app->physics->CreateRectangle(pos.x + 9, pos.y + 9,18, 18, STATIC); // pos + 18/2
+                            PhysBody* c0 = app->physics->CreateRectangle(pos.x + 9, pos.y + 9,18, 18, STATIC); // pos + TilesetSize/2
                             c0->ctype = ColliderType::PLATFORM;
                         }
                         
