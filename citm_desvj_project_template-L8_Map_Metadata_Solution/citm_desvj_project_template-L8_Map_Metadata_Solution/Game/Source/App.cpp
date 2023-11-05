@@ -93,8 +93,9 @@ bool App::Awake()
 		// also read maxFrameDuration 
 		gameTitle.Create(configFile.child("config").child("app").child("title").child_value());
 		win->SetTitle(gameTitle.GetString());
+		Fps30 = true;
 		maxFrameDuration = configFile.child("config").child("app").child("maxFrameDuration").attribute("value").as_int();
-
+		
 		ListItem<Module*>* item;
 		item = modules.start;
 
@@ -154,6 +155,12 @@ bool App::Update()
 	if(ret == true)
 		ret = PostUpdate();
 
+	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
+		Fps30 = !Fps30;
+	}
+	if (Fps30==false) {
+		maxFrameDuration = 30;
+	}
 	FinishUpdate();
 	return ret;
 }
