@@ -158,7 +158,7 @@ bool App::Update()
 	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		Fps30 = !Fps30;
 	}
-	if (Fps30=false) {
+	if (Fps30==false) {
 		maxFrameDuration = 30;
 	}
 	FinishUpdate();
