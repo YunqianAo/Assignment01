@@ -90,7 +90,7 @@ bool Player::Update(float dt)
 		velocity.x = 0.2*dt;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		remainingJumpSteps = 20;
 		jumpForce = 100;
 		
