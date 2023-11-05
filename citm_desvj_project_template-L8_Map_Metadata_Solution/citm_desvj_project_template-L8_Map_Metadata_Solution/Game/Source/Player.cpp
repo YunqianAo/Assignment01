@@ -21,7 +21,7 @@ Player::Player() : Entity(EntityType::PLAYER)
 	idleAnim1.PushBack({ 16 * 4, 0, 16,15 });
 	idleAnim1.PushBack({ 16 * 5, 0, 16,15 });
 	idleAnim1.loop = true;
-	idleAnim1.speed = 0.001f;
+	idleAnim1.speed = 0.1f;
 
 	leftAnim1.PushBack({ 0, 0, 16,15 });
 	leftAnim1.PushBack({ 16, 0, 16,15 });
@@ -34,6 +34,20 @@ Player::Player() : Entity(EntityType::PLAYER)
 	rightAnim1.PushBack({ 16 * 2, 0, 16,15 });
 	rightAnim1.loop = true;
 	rightAnim1.speed = 0.1f;
+
+	upAnim1.PushBack({ 0, 0, 16,15 });
+	
+	upAnim1.loop = true;
+	upAnim1.speed = 0.1f;
+
+	downAnim1.PushBack({ 16, 0, 16,15 });
+	downAnim1.PushBack({ 16*3, 0, 16,15 });
+	downAnim1.PushBack({ 16 * 5-2, 0, 16,15 });
+	downAnim1.PushBack({ 100, 0, 16,15 });
+	downAnim1.PushBack({ 131, 0, 16,15 });
+	downAnim1.PushBack({ 162, 0, 16,15 });
+	downAnim1.loop = true;
+	downAnim1.speed = 0.1f;
 
 	//in constructor
 	
@@ -58,6 +72,7 @@ bool Player::Start() {
 	currentAnim1 = &idleAnim1;
 
 	remainingJumpSteps = 0;
+	death = 0;
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	app->tex->GetSize(texture, texW, texH);
 	pbody = app->physics->CreateCircle(position.x, position.y, 8, bodyType::DYNAMIC);
@@ -77,7 +92,7 @@ bool Player::Start() {
 
 bool Player::Update(float dt)
 {
-
+	texture = app->tex->Load(config.attribute("texturePath1").as_string());
 	currentAnim1 = &idleAnim1;
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
@@ -86,27 +101,44 @@ bool Player::Update(float dt)
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		texture = app->tex->Load(config.attribute("texturePath2").as_string());
+		texture = app->tex->Load(config.attribute("texturePath3").as_string());
 		currentAnim1 = &leftAnim1;
 		velocity.x = -0.2*dt;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		texture = app->tex->Load(config.attribute("texturePath3").as_string());
+		texture = app->tex->Load(config.attribute("texturePath2").as_string());
 		currentAnim1 = &rightAnim1;
 		velocity.x = 0.2*dt;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+		texture = app->tex->Load(config.attribute("texturePath4").as_string());
+		currentAnim1 = &upAnim1;
 		remainingJumpSteps = 20;
 		jumpForce = 100;
 		
 	}
 	if (remainingJumpSteps > 0) {
+		texture = app->tex->Load(config.attribute("texturePath4").as_string());
+		currentAnim1 = &upAnim1;
 		pbody->body->ApplyForce(b2Vec2(0, -jumpForce), pbody->body->GetWorldCenter(), true);
 		jumpForce = jumpForce - 5;
 		remainingJumpSteps--;
 	}
+
+	if (app->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT) {
+		death = 6;
+		texture = app->tex->Load(config.attribute("texturePath5").as_string());
+		currentAnim1 = &downAnim1;
+		
+		
+	}
+	/*if (death > 0) {
+		texture = app->tex->Load(config.attribute("texturePath5").as_string());
+		currentAnim1 = &downAnim1;
+		death--;
+	}*/
 
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
@@ -118,8 +150,8 @@ bool Player::Update(float dt)
 
 	app->render->camera.y = -position.y*3+200;
 
-	//PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
-	//c12->ctype = ColliderType::UNKNOWN;
+	PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
+	c12->ctype = ColliderType::UNKNOWN;
 
 	/*if (OnCollision(pbody,c12) {
 		
@@ -136,7 +168,7 @@ bool Player::CleanUp()
 
 bool Player::PostUpdate() {
 	SDL_Rect rect = currentAnim1->GetCurrentFrame();
-	app->render->DrawTexture(texture, position.x +28, position.y +25, &rect);
+	app->render->DrawTexture(texture, position.x , position.y , &rect);
 
 	return true;
 }
@@ -153,9 +185,9 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		app->audio->PlayFx(pickCoinFxId);
 		break;
 	case ColliderType::UNKNOWN:
-		LOG("Collision UNKNOWN");
-		
-		
+		LOG("Collision UNKNOWN");	
+		texture = app->tex->Load(config.attribute("texturePath5").as_string());
+		currentAnim1 = &downAnim1;
 		break;
 	default:
 		break;
