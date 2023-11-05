@@ -107,7 +107,9 @@ bool Player::Update(float dt)
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 
 	/*app->render->DrawTexture(texture,position.x,position.y);*/
+	app->render->camera.x = -position.x*4+200;
 
+	app->render->camera.y = -position.y*4+200;
 	
 	currentAnim1->Update();
 	return true;
