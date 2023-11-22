@@ -4,8 +4,17 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
+#include "PQueue.h"
+#include "DynArray.h"
+#include "Pathfinding.h"
 
 #include "PugiXml\src\pugixml.hpp"
+
+enum MapOrientation
+{
+    ORTOGRAPHIC = 0,
+    ISOMETRIC
+};
 
 // L05: DONE 2: Create a struct to hold information for a TileSet
 // Ignore Terrain Types and Tile Types for now, but we want the image!
@@ -94,6 +103,9 @@ struct MapData
     int tileheight;
     List<TileSet*> tilesets;
 
+    // L09: DONE 2: Define a property to store the MapType and Load it from the map
+    MapOrientation orientation;
+
     // L06: DONE 2: Add a list/array of layers to the map
     List<MapLayer*> layers;
 };
@@ -125,21 +137,33 @@ public:
     // L06: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
     iPoint MapToWorld(int x, int y) const;
 
+    // L09: DONE 5: Add method WorldToMap to obtain  map coordinates from screen coordinates 
+    iPoint WorldToMap(int x, int y);
+
     // L08: DONE 2: Implement function to the Tileset based on a tile id
     TileSet* GetTilesetFromTileId(int gid) const;
 
     // L06: DONE 6: Load a group of properties 
     bool LoadProperties(pugi::xml_node& node, Properties& properties);
 
+    // L13: Create navigation map for pathfinding
+    void CreateNavigationMap(int& width, int& height, uchar** buffer) const;
+
+    int GetTileWidth();
+    int GetTileHeight();
+
 public: 
     SString name;
     SString path;
+    PathFinding* pathfinding;
 
 private:
     // L05: DONE 1: Declare a variable data of the struct MapData
     MapData mapData;
     bool colLoaded = false;
     bool mapLoaded;
+    MapLayer* navigationLayer;
+    int blockedGid = 49; //!!!! make sure that you assign blockedGid according to your map
 };
 
 
