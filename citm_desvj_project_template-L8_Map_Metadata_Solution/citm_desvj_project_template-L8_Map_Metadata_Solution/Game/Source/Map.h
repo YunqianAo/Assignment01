@@ -163,7 +163,7 @@ private:
     bool colLoaded = false;
     bool mapLoaded;
     MapLayer* navigationLayer;
-    int blockedGid = 49; //!!!! make sure that you assign blockedGid according to your map
+    int blockedGid = 113; //!!!! make sure that you assign blockedGid according to your map
 };
 
 
