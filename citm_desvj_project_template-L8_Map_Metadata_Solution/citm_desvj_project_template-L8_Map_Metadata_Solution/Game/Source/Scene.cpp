@@ -102,8 +102,9 @@ bool Scene::Update(float dt)
 	// Get the mouse position and obtain the map coordinate
 	iPoint mousePos;
 	app->input->GetMousePosition(mousePos.x, mousePos.y);
+	LOG("%d,%d", mousePos.x, mousePos.y);
 	iPoint mouseTile = app->map->WorldToMap(mousePos.x - app->render->camera.x,
-		mousePos.y - app->render->camera.y);
+											mousePos.y - app->render->camera.y);
 
 	// Render a texture where the mouse is over to highlight the tile, use the texture 'mouseTileTex'
 	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
