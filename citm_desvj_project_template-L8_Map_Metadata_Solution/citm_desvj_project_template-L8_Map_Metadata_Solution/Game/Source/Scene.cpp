@@ -87,16 +87,16 @@ bool Scene::Update(float dt)
 	float camSpeed = 1; 
 
 	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		app->render->camera.y -= (int)ceil(camSpeed * dt);
-
-	if(app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 		app->render->camera.y += (int)ceil(camSpeed * dt);
 
+	if(app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		app->render->camera.y -= (int)ceil(camSpeed * dt);
+
 	if(app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		app->render->camera.x -= (int)ceil(camSpeed * dt);
+		app->render->camera.x += (int)ceil(camSpeed * dt);
 
 	if(app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		app->render->camera.x += (int)ceil(camSpeed * dt);
+		app->render->camera.x -= (int)ceil(camSpeed * dt);
 
 	// Renders the image in the center of the screen 
 	//app->render->DrawTexture(img, (int)textPosX, (int)textPosY);
@@ -107,8 +107,8 @@ bool Scene::Update(float dt)
 	iPoint mousePos;
 	app->input->GetMousePosition(mousePos.x, mousePos.y);
 	LOG("%d,%d", mousePos.x, mousePos.y);
-	iPoint mouseTile = app->map->WorldToMap(mousePos.x - app->render->camera.x,
-											mousePos.y - app->render->camera.y);
+	iPoint mouseTile = app->map->WorldToMap(mousePos.x ,
+											mousePos.y );
 
 	// Render a texture where the mouse is over to highlight the tile, use the texture 'mouseTileTex'
 	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
@@ -118,7 +118,7 @@ bool Scene::Update(float dt)
 
 	//If mouse button is pressed modify player position
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);
+		/*player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);*/
 		app->map->pathfinding->CreatePath(origin, mouseTile);
 	}
 

@@ -99,7 +99,7 @@ bool Enemy::Update(float dt)
 	
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+	/*if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		texture = app->tex->Load(config.attribute("texturePath3").as_string());
 		currentAnim1 = &leftAnim1;
 		velocity.x = -0.2*dt;
@@ -132,7 +132,7 @@ bool Enemy::Update(float dt)
 		currentAnim1 = &downAnim1;
 		
 		
-	}
+	}*/
 	/*if (death > 0) {
 		texture = app->tex->Load(config.attribute("texturePath5").as_string());
 		currentAnim1 = &downAnim1;
