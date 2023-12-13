@@ -140,6 +140,8 @@ bool Scene::PostUpdate()
 
 	player->PostUpdate();
 
+	enemy->PostUpdate();
+
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 

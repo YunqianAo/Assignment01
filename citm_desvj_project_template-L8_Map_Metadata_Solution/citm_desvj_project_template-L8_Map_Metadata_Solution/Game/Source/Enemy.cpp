@@ -22,7 +22,7 @@ Enemy::Enemy() : Entity(EntityType::ENEMY)
 	idleAnim1.loop = true;
 	idleAnim1.speed = 0.1f;
 
-	leftAnim1.PushBack({ 0, 0, 16,15 });
+	/*leftAnim1.PushBack({ 0, 0, 16,15 });
 	leftAnim1.PushBack({ 16, 0, 16,15 });
 	leftAnim1.PushBack({ 16 * 2, 0, 16,15 });
 	leftAnim1.loop = true;
@@ -46,7 +46,7 @@ Enemy::Enemy() : Entity(EntityType::ENEMY)
 	downAnim1.PushBack({ 131, 0, 16,15 });
 	downAnim1.PushBack({ 162, 0, 16,15 });
 	downAnim1.loop = true;
-	downAnim1.speed = 0.1f;
+	downAnim1.speed = 0.1f;*/
 
 	//in constructor
 	
@@ -74,13 +74,13 @@ bool Enemy::Start() {
 	death = 0;
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	app->tex->GetSize(texture, texW, texH);
-	pbody = app->physics->CreateCircle(position.x, position.y, 8, bodyType::DYNAMIC);
+	pbody = app->physics->CreateCircle(position.x , position.y , 5, bodyType::DYNAMIC);
 
 	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
 	pbody->listener = this;
 
 	// L07 DONE 7: Assign collider type
-	pbody->ctype = ColliderType::PLAYER;
+	pbody->ctype = ColliderType::ENEMY;
 
 	//initialize audio effect
 	pickCoinFxId = app->audio->LoadFx(config.attribute("coinfxpath").as_string());
