@@ -32,6 +32,10 @@ bool Scene::Awake(pugi::xml_node config)
 	//Assigns the XML node to a member in player
 	player->config = config.child("player");
 
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
+	
+	enemy->config = config.child("enemy");
+
 	//Get the map name from the config file and assigns the value in the module
 	app->map->name = config.child("map").attribute("name").as_string();
 	app->map->path = config.child("map").attribute("path").as_string();

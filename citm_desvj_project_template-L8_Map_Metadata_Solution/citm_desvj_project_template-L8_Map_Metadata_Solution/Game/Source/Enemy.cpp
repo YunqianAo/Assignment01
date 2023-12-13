@@ -14,12 +14,11 @@ Enemy::Enemy() : Entity(EntityType::ENEMY)
 	name.Create("Enemy");
 
 	name.Create("enemy");
-	idleAnim1.PushBack({ 0, 0, 16,15 });
-	idleAnim1.PushBack({ 16, 0, 16,15 });
-	idleAnim1.PushBack({ 16*2, 0, 16,15 });
-	idleAnim1.PushBack({ 16 * 3, 0, 16,15 });
-	idleAnim1.PushBack({ 16 * 4, 0, 16,15 });
-	idleAnim1.PushBack({ 16 * 5, 0, 16,15 });
+	idleAnim1.PushBack({ 1, 0, 8,11 });
+	idleAnim1.PushBack({ 13, 0, 8,11 });
+	idleAnim1.PushBack({ 25, 0, 8,11 });
+	idleAnim1.PushBack({ 27, 0, 8,11 });
+	
 	idleAnim1.loop = true;
 	idleAnim1.speed = 0.1f;
 
@@ -60,7 +59,7 @@ Enemy::~Enemy() {
 bool Enemy::Awake() {
 
 	//L03: DONE 2: Initialize Player parameters
-	position = iPoint(config.attribute("x").as_int(), config.attribute("y").as_int());
+	position = iPoint(config.attribute("x1").as_int(), config.attribute("y1").as_int());
 	
 	return true;
 }
@@ -146,9 +145,9 @@ bool Enemy::Update(float dt)
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 
 	/*app->render->DrawTexture(texture,position.x,position.y);*/
-	app->render->camera.x = -position.x*3+200;
+	/*app->render->camera.x = -position.x*3+200;
 
-	app->render->camera.y = -position.y*3+200;
+	app->render->camera.y = -position.y*3+200;*/
 
 	//PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
 	//c12->ctype = ColliderType::UNKNOWN;
