@@ -34,6 +34,13 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+
+
+
+
+public:
+	Player* player;
+
 private:
 	SDL_Texture* img;
 	float textPosX, textPosY = 0;
@@ -42,7 +49,7 @@ private:
 	SDL_Texture* mouseTileTex = nullptr;
 
 	//L03: DONE 3b: Declare a Player attribute
-	Player* player;
+	
 	Enemy* enemy;
 
 };

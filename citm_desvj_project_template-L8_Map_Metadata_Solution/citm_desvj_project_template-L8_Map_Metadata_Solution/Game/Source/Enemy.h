@@ -59,6 +59,8 @@ public:
 
 	const char* texturePath;
 
+	iPoint destination;
+
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;
 };

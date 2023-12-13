@@ -8,6 +8,7 @@
 #include "Log.h"
 #include "Point.h"
 #include "Physics.h"
+#include "Map.h"
 
 Enemy::Enemy() : Entity(EntityType::ENEMY)
 {
@@ -60,7 +61,7 @@ bool Enemy::Awake() {
 
 	//L03: DONE 2: Initialize Player parameters
 	position = iPoint(config.attribute("x1").as_int(), config.attribute("y1").as_int());
-	
+	destination = app->scene->player->position;
 	return true;
 }
 
@@ -93,9 +94,16 @@ bool Enemy::Update(float dt)
 {
 	texture = app->tex->Load(config.attribute("texturePath1").as_string());
 	currentAnim1 = &idleAnim1;
+
+	
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
 	//L03: DONE 4: render the player texture and modify the position of the player using WSAD keys and render the texture
+
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+		/*player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);*/
+		app->map->pathfinding->CreatePath(position,destination);
+	}
 	
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
