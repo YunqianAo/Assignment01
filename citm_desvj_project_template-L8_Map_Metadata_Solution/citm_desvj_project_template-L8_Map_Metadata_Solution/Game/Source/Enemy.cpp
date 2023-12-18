@@ -9,6 +9,7 @@
 #include "Point.h"
 #include "Physics.h"
 #include "Map.h"
+#include "Player.h"
 
 Enemy::Enemy() : Entity(EntityType::ENEMY)
 {
@@ -99,10 +100,19 @@ bool Enemy::Update(float dt)
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
 	//L03: DONE 4: render the player texture and modify the position of the player using WSAD keys and render the texture
-
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		/*player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);*/
-		app->map->pathfinding->CreatePath(position,destination);
+	destination.x = app->scene->getPlayer()->position.x;
+	destination.y = app->scene->getPlayer()->position.y;
+	int limitX = destination.x - position.x;
+	int limitY = destination.y - position.y;
+	if (limitX < 0) {
+		limitX = -limitX;
+	}
+	if (limitY < 0) {
+		limitY = -limitX;
+	}
+	if (limitX <= 100 && limitY <= 100) {
+		app->map->pathfinding->CreatePath(position, destination);
+		
 	}
 	
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);

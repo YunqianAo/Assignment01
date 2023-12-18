@@ -20,6 +20,7 @@ Scene::Scene() : Module()
 Scene::~Scene()
 {}
 
+
 // Called before render is available
 bool Scene::Awake(pugi::xml_node config)
 {
@@ -154,4 +155,7 @@ bool Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+Player* Scene::getPlayer(){ 
+	return player;
 }

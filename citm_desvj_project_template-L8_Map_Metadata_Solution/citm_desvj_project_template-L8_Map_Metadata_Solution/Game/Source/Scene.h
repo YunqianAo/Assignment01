@@ -13,6 +13,8 @@ public:
 
 	Scene();
 
+	Player* getPlayer();
+
 	// Destructor
 	virtual ~Scene();
 
