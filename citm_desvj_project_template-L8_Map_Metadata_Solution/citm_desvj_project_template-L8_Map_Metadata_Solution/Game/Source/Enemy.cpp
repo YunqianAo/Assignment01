@@ -114,6 +114,21 @@ bool Enemy::Update(float dt)
 		app->map->pathfinding->CreatePath(position, destination);
 		
 	}
+	if (app->map->pathfinding->GetLastPath()->Count() > 1) {
+		iPoint newPositionPoint = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(1)->x, app->map->pathfinding->GetLastPath()->At(1)->y);
+		b2Vec2 newPosition = b2Vec2(PIXEL_TO_METERS(newPositionPoint.x), PIXEL_TO_METERS(newPositionPoint.y));
+		pbody->body->SetLinearVelocity(b2Vec2(0, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+		if (position.x > newPositionPoint.x) {
+			pbody->body->SetLinearVelocity(b2Vec2(-speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+		}
+		else {
+			pbody->body->SetLinearVelocity(b2Vec2(speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+		}
+	}
+	for (uint i = 0; i < app->map->pathfinding->GetLastPath()->Count(); ++i) {
+		iPoint pos = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(i)->x, app->map->pathfinding->GetLastPath()->At(i)->y);
+		
+	}
 	
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
