@@ -452,8 +452,8 @@ void Map::CreateNavigationMap(int& width, int& height, uchar** buffer) const
 
             //If the gid is a blockedGid is an area that I cannot navigate, so is set in the navigation map as 0, all the other areas can be navigated
             //!!!! make sure that you assign blockedGid according to your map
-            if (gid == blockedGid) navigationMap[i] = 0;
-            else navigationMap[i] = 1;
+            if (gid == blockedGid) navigationMap[i] = 1;
+            else navigationMap[i] = 0;
         }
     }
 
