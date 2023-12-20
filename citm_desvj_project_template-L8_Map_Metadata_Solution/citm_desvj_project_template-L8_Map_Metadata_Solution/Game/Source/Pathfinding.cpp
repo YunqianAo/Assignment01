@@ -5,11 +5,14 @@
 #include "Defs.h"
 #include "Log.h"
 
-PathFinding::PathFinding() 
+PathFinding::PathFinding() : Module()
 {
 	map = NULL;
 	width = 0;
 	height = 0;
+	name.Create("pathfinding");
+
+		
 }
 
 // Destructor

@@ -8,6 +8,8 @@
 #include "EntityManager.h"
 
 #include "PugiXml/src/pugixml.hpp"
+#define CONFIG_FILENAME		"config.xml"
+#define SAVE_STATE_FILENAME "save_game.xml"
 
 // L03: DONE 1: Add the EntityManager Module to App
 
@@ -22,6 +24,7 @@ class EntityManager;
 class Map;
 //L07 DONE 2: Add Physics module
 class Physics;
+class PathFinding;
 
 class App
 {
@@ -89,6 +92,7 @@ public:
 	Map* map;
 	//L07 DONE 2: Add Physics module
 	Physics* physics;
+	PathFinding* pathfinding;
 
 private:
 

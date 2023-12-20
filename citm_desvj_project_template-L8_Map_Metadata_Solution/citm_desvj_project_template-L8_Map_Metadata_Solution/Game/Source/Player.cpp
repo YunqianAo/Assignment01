@@ -134,29 +134,23 @@ bool Player::Update(float dt)
 		
 		
 	}
-	/*if (death > 0) {
-		texture = app->tex->Load(config.attribute("texturePath5").as_string());
-		currentAnim1 = &downAnim1;
-		death--;
-	}*/
+
 
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
-
 	/*app->render->DrawTexture(texture,position.x,position.y);*/
 	app->render->camera.x = -position.x*3+200;
-
 	app->render->camera.y = -450;
+	LOG("%d,%d", position.x, position.y);
 
-	//PhysBody* c12 = app->physics->CreateRectangle(0 + 18 * 38 / 2, 19.5 * 18, 18 * 38, 18, STATIC);
-	//c12->ctype = ColliderType::UNKNOWN;
-
-	/*if (OnCollision(pbody,c12) {
-		
-	}*/
-	
+	//Intento de hacer que la camara cambie a cierta altura
+	//if (position.y >= 379)
+	//{
+	//	app->render->camera.y = -600;
+	//}
+	//
 	currentAnim1->Update();
 	return true;
 }

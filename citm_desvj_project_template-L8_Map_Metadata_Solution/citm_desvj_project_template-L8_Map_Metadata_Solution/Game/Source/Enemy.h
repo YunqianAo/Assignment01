@@ -31,6 +31,7 @@ public:
 
 public:
 
+
 	Animation* currentAnim1 = nullptr;
 	Animation idleAnim1;
 	Animation downAnim1;
@@ -55,9 +56,13 @@ public:
 	int framesJump;
 	int jumpForce;
 	int death;
+	bool showpath = true;
+	bool player_range = false;
 
-
+	SDL_Texture* mouseTileTex = nullptr;
 	const char* texturePath;
+	bool originSelected = false;
+	iPoint origin;
 
 	iPoint destination;
 

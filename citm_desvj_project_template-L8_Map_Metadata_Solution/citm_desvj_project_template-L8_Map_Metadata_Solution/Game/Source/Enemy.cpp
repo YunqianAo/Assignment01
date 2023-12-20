@@ -93,7 +93,7 @@ bool Enemy::Start() {
 
 bool Enemy::Update(float dt)
 {
-	texture = app->tex->Load(config.attribute("texturePath1").as_string());
+	texture = app->tex->Load(config.attribute("texturePath4").as_string());
 	currentAnim1 = &idleAnim1;
 
 	
@@ -145,7 +145,7 @@ bool Enemy::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		texture = app->tex->Load(config.attribute("texturePath4").as_string());
+		texture = app->tex->Load(config.atyytribute("texturePath4").as_string());
 		currentAnim1 = &upAnim1;
 		remainingJumpSteps = 20;
 		jumpForce = 100;

@@ -16,7 +16,7 @@
 // Details: https://theory.stanford.edu/~amitp/GameProgramming/
 // --------------------------------------------------
 
-class PathFinding
+class PathFinding : public Module
 {
 public:
 

@@ -25,7 +25,7 @@
 		texturePath3="Assets/Textures/walk cycle/ninja walk -Sheet2.png"
 		texturePath4="Assets/Textures/Basic Frames/jump.png"
 		texturePath5="Assets/Textures/Death/death-Sheet.png"/>
-	  <enemy x1="450" y1="30" texturePath1="Assets/Textures/tomatohead1.png"/>
+	  <enemy x1="450" y1="30" texturePath4="Assets/Textures/tomatohead1.png"/>
     <map path="Assets/Maps/" name="Map.tmx"/>
     <item x="216" y="144" texturepath="Assets/Textures/goldCoin.png"/>
     <item x="360" y="144" texturepath="Assets/Textures/goldCoin.png"/>
