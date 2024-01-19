@@ -13,7 +13,7 @@
 
 Enemy::Enemy() : Entity(EntityType::ENEMY)
 {
-	name.Create("Enemy");
+	/*name.Create("Enemy");*/
 
 	name.Create("enemy");
 	idleAnim1.PushBack({ 1, 0, 8,11 });
