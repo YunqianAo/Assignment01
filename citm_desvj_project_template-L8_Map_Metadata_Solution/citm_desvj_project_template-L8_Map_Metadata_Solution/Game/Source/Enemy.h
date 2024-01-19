@@ -26,11 +26,21 @@ public:
 
 	bool CleanUp();
 
-	// L07 DONE 6: Define OnCollision function for the player. 
+	void EnemyMove(float dt, int enemyAreaLimitL, int enemyAreaLimitR);
+	bool Rd();
+
 	void OnCollision(PhysBody* physA, PhysBody* physB);
+	void OnEndCollision(PhysBody* physA, PhysBody* physB);
+
+	void reLoadXML(pugi::xml_node& parameters);
+	// L07 DONE 6: Define OnCollision function for the player. 
+	/*void OnCollision(PhysBody* physA, PhysBody* physB);*/
 
 public:
+	bool isPicked = false;
 
+	Animation SPosition;
+	SDL_Rect* spritePositions;
 
 	Animation* currentAnim1 = nullptr;
 	Animation idleAnim1;
@@ -38,6 +48,8 @@ public:
 	Animation upAnim1;
 	Animation rightAnim1;
 	Animation leftAnim1;
+
+
 	//class member variable
 	int remainingJumpSteps;
 
