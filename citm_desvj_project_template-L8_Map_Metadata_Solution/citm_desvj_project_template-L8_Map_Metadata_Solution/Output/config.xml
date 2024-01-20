@@ -25,7 +25,7 @@
 		texturePath3="Assets/Textures/walk cycle/ninja walk -Sheet2.png"
 		texturePath4="Assets/Textures/Basic Frames/jump.png"
 		texturePath5="Assets/Textures/Death/death-Sheet.png"/>
-	  <enemy x1="450" y1="30" Tsprite="40" x="150" y="150" Pweight="1200" Area_Limit_L="3328" Area_Limit_R="3712" life="3" speed ="0.4" texturePath4="Assets/Textures/tomatohead1.png"/>
+	  <enemy x1="450" y1="30" Tsprite="40" x="150" y="150" Pweight="1200" Area_Limit_L="3328" Area_Limit_R="3712" life="3" speed ="0.4" texturePath="Assets/Textures/tomatohead1.png"/>
     <map path="Assets/Maps/" name="Map.tmx"/>
     <item x="216" y="144" texturepath="Assets/Textures/goldCoin.png"/>
     <item x="360" y="144" texturepath="Assets/Textures/goldCoin.png"/>

@@ -10,6 +10,7 @@
 #include "Physics.h"
 #include "Map.h"
 #include "Player.h"
+#include "Box2D/Box2D/Dynamics/b2Body.h"
 
 Enemy::Enemy() : Entity(EntityType::ENEMY)
 {
@@ -24,32 +25,7 @@ Enemy::Enemy() : Entity(EntityType::ENEMY)
 	idleAnim1.loop = true;
 	idleAnim1.speed = 0.1f;
 
-	/*leftAnim1.PushBack({ 0, 0, 16,15 });
-	leftAnim1.PushBack({ 16, 0, 16,15 });
-	leftAnim1.PushBack({ 16 * 2, 0, 16,15 });
-	leftAnim1.loop = true;
-	leftAnim1.speed = 0.1f;
-
-	rightAnim1.PushBack({ 0, 0, 16,15 });
-	rightAnim1.PushBack({ 16, 0, 16,15 });
-	rightAnim1.PushBack({ 16 * 2, 0, 16,15 });
-	rightAnim1.loop = true;
-	rightAnim1.speed = 0.1f;
-
-	upAnim1.PushBack({ 0, 0, 16,15 });
 	
-	upAnim1.loop = true;
-	upAnim1.speed = 0.1f;
-
-	downAnim1.PushBack({ 16, 0, 16,15 });
-	downAnim1.PushBack({ 16*3, 0, 16,15 });
-	downAnim1.PushBack({ 16 * 5-2, 0, 16,15 });
-	downAnim1.PushBack({ 100, 0, 16,15 });
-	downAnim1.PushBack({ 131, 0, 16,15 });
-	downAnim1.PushBack({ 162, 0, 16,15 });
-	downAnim1.loop = true;
-	downAnim1.speed = 0.1f;*/
-
 	//in constructor
 	
 }
@@ -60,6 +36,8 @@ Enemy::~Enemy() {
 
 bool Enemy::Awake() {
 
+	EnemyPath = parameters.attribute("texturepath").as_string();
+
 	//L03: DONE 2: Initialize Player parameters
 	position = iPoint(config.attribute("x1").as_int(), config.attribute("y1").as_int());
 	destination = app->scene->player->position;
@@ -67,6 +45,8 @@ bool Enemy::Awake() {
 }
 
 bool Enemy::Start() {
+
+	Enemytexture = app->tex->Load(EnemyPath);
 
 	texture = app->tex->Load(config.attribute("texturePath1").as_string());
 	
@@ -195,6 +175,14 @@ bool Enemy::Update(float dt)
 
 bool Enemy::CleanUp()
 {
+	if (pbody != nullptr) {
+		app->physics->GetWorld()->DestroyBody(pbody->body);
+	}
+
+	if (Enemytexture) {
+		SDL_DestroyTexture(Enemytexture);
+		Enemytexture = nullptr;
+	}
 	return true;
 }
 
@@ -211,6 +199,10 @@ void Enemy::OnCollision(PhysBody* physA, PhysBody* physB) {
 	{
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
+		break;
+	case ColliderType::PLAYER:
+		LOG("Collision PLAYER");
+
 		break;
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");

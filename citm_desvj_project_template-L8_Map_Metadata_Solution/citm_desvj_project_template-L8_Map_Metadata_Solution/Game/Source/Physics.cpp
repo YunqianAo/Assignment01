@@ -334,6 +334,10 @@ void Physics::BeginContact(b2Contact* contact)
 }
 
 //--------------- PhysBody
+b2World* Physics::GetWorld()
+{
+	return world;
+}
 
 void PhysBody::GetPosition(int& x, int& y) const
 {
