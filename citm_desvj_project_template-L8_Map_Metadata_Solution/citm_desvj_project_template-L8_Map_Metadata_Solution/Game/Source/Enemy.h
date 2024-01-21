@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Point.h"
+#include "Player.h"
 #include "SDL/include/SDL.h"
 #include "Animation.h"
 
@@ -37,6 +38,10 @@ public:
 	/*void OnCollision(PhysBody* physA, PhysBody* physB);*/
 
 public:
+
+	Player* player=nullptr;
+
+
 	bool isPicked = false;
 
 	Animation SPosition;

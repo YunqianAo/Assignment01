@@ -1,4 +1,4 @@
-#include "Enemy.h"
+﻿#include "Enemy.h"
 #include "App.h"
 #include "Textures.h"
 #include "Audio.h"
@@ -68,6 +68,13 @@ bool Enemy::Start() {
 	pickCoinFxId = app->audio->LoadFx(config.attribute("coinfxpath").as_string());
 
 	jumpForce = 0;
+
+	b2Filter enemyFilter;
+	enemyFilter.categoryBits = static_cast<uint16_t>(ColliderType::PLATFORM);
+	enemyFilter.maskBits = 0xFFFF & ~static_cast<uint16_t>(ColliderType::PLATFORM);  // ÓëÈÎºÎÅö×²×é±ðµÄÎïÌå¶¼·¢ÉúÅö×²£¬µ«²»Óë×Ô¼º·¢ÉúÅö×²
+	pbody->body->GetFixtureList()[0].SetFilterData(enemyFilter);
+
+	player = app->scene->getPlayer();
 	return true;
 }
 
