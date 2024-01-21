@@ -54,6 +54,20 @@ public:
 	Animation rightAnim1;
 	Animation leftAnim1;
 
+	float rangeSize = 700.0f;
+	float leftTopX;
+	float leftTopY;
+	float rightBottomX;
+	float rightBottomY;
+
+	float atk_rangeSize = 40.0f;
+	float atk_leftTopX;
+	float atk_leftTopY;
+	float atk_rightBottomX;
+	float atk_rightBottomY;
+
+	bool AtackPlayer = false;
+
 
 	//class member variable
 	int remainingJumpSteps;

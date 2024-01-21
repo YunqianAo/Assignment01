@@ -80,6 +80,33 @@ bool Enemy::Start() {
 
 bool Enemy::Update(float dt)
 {
+
+	if (player->position.x >= leftTopX && player->position.x <= rightBottomX &&
+		player->position.y >= leftTopY && player->position.y <= rightBottomY) {
+		//printf("%d", inEenemyArea);
+		/*if (!inEenemyArea && !isDead) {
+			vel = b2Vec2(METERS_TO_PIXELS(position.x), METERS_TO_PIXELS(position.y));
+
+			pbody->body->SetTransform(vel, pbody->body->GetAngle());
+		}*/
+
+
+		if (player->position.x >= atk_leftTopX && player->position.x <= atk_rightBottomX &&
+			player->position.y >= atk_leftTopY && player->position.y <= atk_rightBottomY) {
+			AtackPlayer = true;
+
+		}
+		else {
+			//printf("\nOutArea");
+			AtackPlayer = false;
+			atk_leftTopX = position.x - atk_rangeSize * 4;
+			atk_leftTopY = position.y - atk_rangeSize;
+			atk_rightBottomX = position.x + atk_rangeSize;
+			atk_rightBottomY = position.y + atk_rangeSize;
+		}
+
+	}
+
 	texture = app->tex->Load(config.attribute("texturePath4").as_string());
 	currentAnim1 = &idleAnim1;
 
