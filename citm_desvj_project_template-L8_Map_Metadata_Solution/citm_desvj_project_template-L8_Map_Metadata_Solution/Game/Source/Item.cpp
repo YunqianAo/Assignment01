@@ -36,24 +36,46 @@ bool Item::Start() {
 
 	// L07 DONE 7: Assign collider type
 	pbody->ctype = ColliderType::ITEM;
-
+	pbody->listener = this;
 	return true;
 }
 
 bool Item::Update(float dt)
 {
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
-
-	b2Transform pbodyPos = pbody->body->GetTransform();
-	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
-	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
-
+	if (pbody != nullptr) {
+		b2Transform pbodyPos = pbody->body->GetTransform();
+		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
+		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
+	
 	app->render->DrawTexture(texture, position.x, position.y);
-
+	}
+	
+	if (touch) {
+			printf("item");
+			pbody->body->GetWorld()->DestroyBody(pbody->body);
+			pbody = nullptr;
+			touch = false;
+	}
+	
 	return true;
 }
 
 bool Item::CleanUp()
 {
 	return true;
+}
+
+void Item::OnCollision(PhysBody* physA, PhysBody* physB) {
+
+	switch (physB->ctype)
+	{
+	case ColliderType::PLAYER:
+		app->scene->GetVida()->vida--;
+		touch = true;
+		break;
+	case ColliderType::UNKNOWN:
+		LOG("Collision UNKNOWN");
+		break;
+	}
 }

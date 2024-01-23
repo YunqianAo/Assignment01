@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "Map.h"
 #include "Item.h"
+#include "itemHeal.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -47,6 +48,12 @@ bool Scene::Awake(pugi::xml_node config)
 	{
 		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
 		item->parameters = itemNode;
+	}
+
+	for (pugi::xml_node itemNode = config.child("itemheal"); itemNode; itemNode = itemNode.next_sibling("itemheal"))
+	{
+		itemheal = (itemHeal*)app->entityManager->CreateEntity(EntityType::ITEMHEAL);
+		itemheal->parameters = itemNode;
 	}
 
 	return ret;
@@ -155,6 +162,10 @@ bool Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+itemHeal* Scene::GetVida()
+{
+	return itemheal;
 }
 Player* Scene::getPlayer(){ 
 	return player;

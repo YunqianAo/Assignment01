@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Player.h"
 #include"Enemy.h"
+#include"itemHeal.h"
 
 struct SDL_Texture;
 
@@ -37,11 +38,13 @@ public:
 	bool CleanUp();
 
 
-
+	itemHeal* GetVida();
 
 
 public:
 	Player* player;
+
+	itemHeal* itemheal;
 
 private:
 	SDL_Texture* img;

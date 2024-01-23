@@ -11,6 +11,7 @@ enum class EntityType
 	PLAYER,
 	ENEMY,
 	ITEM,
+	ITEMHEAL,
 	UNKNOWN
 };
 
