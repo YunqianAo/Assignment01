@@ -243,7 +243,7 @@ void Enemy::OnCollision(PhysBody* physA, PhysBody* physB) {
 		break;
 	case ColliderType::PLAYER:
 		LOG("Collision PLAYER");
-
+		app->scene->GetVida()->vida--;
 		break;
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
