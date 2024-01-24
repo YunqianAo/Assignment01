@@ -71,7 +71,7 @@ void Item::OnCollision(PhysBody* physA, PhysBody* physB) {
 	switch (physB->ctype)
 	{
 	case ColliderType::PLAYER:
-		app->scene->GetVida()->vida--;
+		app->scene->GetVida()->vida++;
 		touch = true;
 		break;
 	case ColliderType::UNKNOWN:

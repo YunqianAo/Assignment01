@@ -34,9 +34,9 @@ bool Scene::Awake(pugi::xml_node config)
 	//Assigns the XML node to a member in player
 	player->config = config.child("player");
 
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
+	/*enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
 	
-	enemy->config = config.child("enemy");
+	enemy->config = config.child("enemy");*/
 
 	//Get the map name from the config file and assigns the value in the module
 	app->map->name = config.child("map").attribute("name").as_string();
@@ -54,6 +54,13 @@ bool Scene::Awake(pugi::xml_node config)
 	{
 		itemheal = (itemHeal*)app->entityManager->CreateEntity(EntityType::ITEMHEAL);
 		itemheal->parameters = itemNode;
+	}
+	for (pugi::xml_node itemNode = config.child("enemy"); itemNode; itemNode = itemNode.next_sibling("enemy"))
+	{
+		enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
+		
+		/*enemy->config = config.child("enemy");*/
+		enemy->parameters = itemNode;
 	}
 
 	return ret;

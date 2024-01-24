@@ -36,21 +36,26 @@ Enemy::~Enemy() {
 
 bool Enemy::Awake() {
 
-	EnemyPath = parameters.attribute("texturepath").as_string();
+	/*EnemyPath = parameters.attribute("texturepath").as_string();*/
 
 	//L03: DONE 2: Initialize Player parameters
-	position = iPoint(config.attribute("x1").as_int(), config.attribute("y1").as_int());
+	position = iPoint(parameters.attribute("x1").as_int(), config.attribute("y1").as_int());
+	texture = app->tex->Load(parameters.attribute("texturePath").as_string());
+
+
+	currentAnim1 = &idleAnim1;
+
 	destination = app->scene->player->position;
 	return true;
 }
 
 bool Enemy::Start() {
 
-	Enemytexture = app->tex->Load(EnemyPath);
+	/*Enemytexture = app->tex->Load(EnemyPath);*/
+	texture = app->tex->Load(parameters.attribute("texturePath").as_string());
 
-	texture = app->tex->Load(config.attribute("texturePath1").as_string());
 	
-	currentAnim1 = &idleAnim1;
+	/*currentAnim1 = &idleAnim1;*/
 
 	remainingJumpSteps = 0;
 	death = 0;
@@ -81,68 +86,68 @@ bool Enemy::Start() {
 bool Enemy::Update(float dt)
 {
 
-	if (player->position.x >= leftTopX && player->position.x <= rightBottomX &&
-		player->position.y >= leftTopY && player->position.y <= rightBottomY) {
-		//printf("%d", inEenemyArea);
-		/*if (!inEenemyArea && !isDead) {
-			vel = b2Vec2(METERS_TO_PIXELS(position.x), METERS_TO_PIXELS(position.y));
+	//if (player->position.x >= leftTopX && player->position.x <= rightBottomX &&
+	//	player->position.y >= leftTopY && player->position.y <= rightBottomY) {
+	//	//printf("%d", inEenemyArea);
+	//	/*if (!inEenemyArea && !isDead) {
+	//		vel = b2Vec2(METERS_TO_PIXELS(position.x), METERS_TO_PIXELS(position.y));
 
-			pbody->body->SetTransform(vel, pbody->body->GetAngle());
-		}*/
+	//		pbody->body->SetTransform(vel, pbody->body->GetAngle());
+	//	}*/
 
 
-		if (player->position.x >= atk_leftTopX && player->position.x <= atk_rightBottomX &&
-			player->position.y >= atk_leftTopY && player->position.y <= atk_rightBottomY) {
-			AtackPlayer = true;
+	//	if (player->position.x >= atk_leftTopX && player->position.x <= atk_rightBottomX &&
+	//		player->position.y >= atk_leftTopY && player->position.y <= atk_rightBottomY) {
+	//		AtackPlayer = true;
 
-		}
-		else {
-			//printf("\nOutArea");
-			AtackPlayer = false;
-			atk_leftTopX = position.x - atk_rangeSize * 4;
-			atk_leftTopY = position.y - atk_rangeSize;
-			atk_rightBottomX = position.x + atk_rangeSize;
-			atk_rightBottomY = position.y + atk_rangeSize;
-		}
+	//	}
+	//	else {
+	//		//printf("\nOutArea");
+	//		AtackPlayer = false;
+	//		atk_leftTopX = position.x - atk_rangeSize * 4;
+	//		atk_leftTopY = position.y - atk_rangeSize;
+	//		atk_rightBottomX = position.x + atk_rangeSize;
+	//		atk_rightBottomY = position.y + atk_rangeSize;
+	//	}
 
-	}
+	//}
 
-	texture = app->tex->Load(config.attribute("texturePath4").as_string());
-	currentAnim1 = &idleAnim1;
+	//texture = app->tex->Load(config.attribute("texturePath4").as_string());
+	//currentAnim1 = &idleAnim1;
 
-	
-	// L07 DONE 5: Add physics to the player - updated player position using physics
+	//
+	//// L07 DONE 5: Add physics to the player - updated player position using physics
 
-	//L03: DONE 4: render the player texture and modify the position of the player using WSAD keys and render the texture
-	destination.x = app->scene->getPlayer()->position.x;
-	destination.y = app->scene->getPlayer()->position.y;
-	int limitX = destination.x - position.x;
-	int limitY = destination.y - position.y;
-	if (limitX < 0) {
-		limitX = -limitX;
-	}
-	if (limitY < 0) {
-		limitY = -limitX;
-	}
-	if (limitX <= 100 && limitY <= 100) {
-		app->map->pathfinding->CreatePath(position, destination);
-		
-	}
-	if (app->map->pathfinding->GetLastPath()->Count() > 1) {
-		iPoint newPositionPoint = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(1)->x, app->map->pathfinding->GetLastPath()->At(1)->y);
-		b2Vec2 newPosition = b2Vec2(PIXEL_TO_METERS(newPositionPoint.x), PIXEL_TO_METERS(newPositionPoint.y));
-		pbody->body->SetLinearVelocity(b2Vec2(0, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
-		if (position.x > newPositionPoint.x) {
-			pbody->body->SetLinearVelocity(b2Vec2(-speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
-		}
-		else {
-			pbody->body->SetLinearVelocity(b2Vec2(speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
-		}
-	}
-	for (uint i = 0; i < app->map->pathfinding->GetLastPath()->Count(); ++i) {
-		iPoint pos = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(i)->x, app->map->pathfinding->GetLastPath()->At(i)->y);
-		
-	}
+	////L03: DONE 4: render the player texture and modify the position of the player using WSAD keys and render the texture
+	//destination.x = app->scene->getPlayer()->position.x;
+	//destination.y = app->scene->getPlayer()->position.y;
+	//int limitX = destination.x - position.x;
+	//int limitY = destination.y - position.y;
+	//if (limitX < 0) {
+	//	limitX = -limitX;
+	//}
+	//if (limitY < 0) {
+	//	limitY = -limitX;
+	//}
+	//if (limitX <= 100 && limitY <= 100) {
+	//	app->map->pathfinding->CreatePath(position, destination);
+	//	
+	//}
+	//if (app->map->pathfinding->GetLastPath()->Count() > 1) {
+	//	iPoint newPositionPoint = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(1)->x, app->map->pathfinding->GetLastPath()->At(1)->y);
+	//	b2Vec2 newPosition = b2Vec2(PIXEL_TO_METERS(newPositionPoint.x), PIXEL_TO_METERS(newPositionPoint.y));
+	//	pbody->body->SetLinearVelocity(b2Vec2(0, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+	//	if (position.x > newPositionPoint.x) {
+	//		pbody->body->SetLinearVelocity(b2Vec2(-speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+	//	}
+	//	else {
+	//		pbody->body->SetLinearVelocity(b2Vec2(speed * dt, pbody->body->GetLinearVelocity().y - GRAVITY_Y));
+	//	}
+	//}
+	//for (uint i = 0; i < app->map->pathfinding->GetLastPath()->Count(); ++i) {
+	//	iPoint pos = app->map->MapToWorld(app->map->pathfinding->GetLastPath()->At(i)->x, app->map->pathfinding->GetLastPath()->At(i)->y);
+	//	
+	//}
 	
 	b2Vec2 velocity = b2Vec2(0, -GRAVITY_Y);
 
@@ -202,7 +207,9 @@ bool Enemy::Update(float dt)
 	/*if (OnCollision(pbody,c12) {
 		
 	}*/
-	
+	SDL_Rect rect = currentAnim1->GetCurrentFrame();
+	app->render->DrawTexture(texture, position.x, position.y, &rect);
+
 	currentAnim1->Update();
 	return true;
 }

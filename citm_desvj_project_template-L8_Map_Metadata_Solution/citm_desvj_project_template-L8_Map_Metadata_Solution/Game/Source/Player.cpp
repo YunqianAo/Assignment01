@@ -142,7 +142,7 @@ bool Player::Update(float dt)
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
 	/*app->render->DrawTexture(texture,position.x,position.y);*/
 	app->render->camera.x = -position.x*3+200;
-	app->render->camera.y = -450;
+	app->render->camera.y = -position.y * 3 + 200;
 	LOG("%d,%d", position.x, position.y);
 
 	//Intento de hacer que la camara cambie a cierta altura
@@ -173,6 +173,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 	{
 	case ColliderType::PLATFORM:
 		LOG("Collision PLATFORM");
+		break;
+	case ColliderType::ENEMY:
+		texture = app->tex->Load(config.attribute("texturePath5").as_string());
+		currentAnim1 = &downAnim1;
+		LOG("Collision ENEMY");
 		break;
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
