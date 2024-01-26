@@ -11,11 +11,14 @@
 
 
 ## Features
-* You have four bars of life at the beginning. 
+* You have four bars of life at the beginning.
+* Logo Screen
+* FadeToBlack
 * Each cake you eat can increase one bar of life. 
 * Being touched by a monster will reduce one bar. 
 * When the life is exhausted, the character will die (death animation). 
 * When you reach the end, you will win and get applause
+
 
 ## Developers
 
