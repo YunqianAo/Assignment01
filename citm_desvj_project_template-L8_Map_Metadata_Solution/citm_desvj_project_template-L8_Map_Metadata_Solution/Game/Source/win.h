@@ -28,13 +28,15 @@ public:
 
 
 public:
-	bool touch = false;
+	int touch1 = 0;
 	bool isPicked = false;
 
 	Animation dd;
 	Animation* currentAnimation = nullptr;
 
 	int vida = 4;
+	int pickCoinFxId;
+
 
 private:
 
