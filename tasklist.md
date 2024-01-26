@@ -3,8 +3,9 @@
 ### Sergio Corona Gómez
  * Design a map based on Tiled TMX map and the functions to load and draw (orthographic)
  * Platform colliders defined as a layer in the map and are created dynamically at loading time using Box2D
- * Start scene
+ * Logo scene & FadeToBlack
  * Code integration and debugging
+ * Code Cleaning
 ### Yunqian Ao
  * Player movement and jumping using Box2D physics
  * F9 Visualize the colliders / logic
