@@ -17,7 +17,11 @@
     <resizable value="false"/>
     <fullscreen_window value="false"/>
   </window>
-
+	
+  <sceneLogo>
+	  <textureLogoPath path="Assets/Textures/Intro.png"/>
+  </sceneLogo>
+	
   <scene>
 	  <player x="120" y="280" texturePath="Assets/Textures/player.png" coinfxpath="Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg"
 		texturePath1="Assets/Textures/idle/ninja idle -Sheet.png"

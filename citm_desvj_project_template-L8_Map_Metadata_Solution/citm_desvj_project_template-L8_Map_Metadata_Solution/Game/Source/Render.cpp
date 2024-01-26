@@ -1,7 +1,8 @@
 #include "App.h"
 #include "Window.h"
 #include "Render.h"
-
+#include "Scene.h"
+#include "SceneLogo.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -107,7 +108,7 @@ void Render::ResetViewPort()
 }
 
 // Blit to screen
-bool Render::DrawTexture(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY) const
+bool Render::DrawTexture(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY,bool scalar) const
 {
 	bool ret = true;
 	uint scale = app->win->GetScale();
@@ -126,8 +127,11 @@ bool Render::DrawTexture(SDL_Texture* texture, int x, int y, const SDL_Rect* sec
 		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	}
 
+	if(scalar)
+	{
 	rect.w *= scale;
 	rect.h *= scale;
+	}
 
 	SDL_Point* p = NULL;
 	SDL_Point pivot;

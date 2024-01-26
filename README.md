@@ -12,5 +12,3 @@
  - Yunqian Ao
 
  - Sergio Corona
-
-TRY

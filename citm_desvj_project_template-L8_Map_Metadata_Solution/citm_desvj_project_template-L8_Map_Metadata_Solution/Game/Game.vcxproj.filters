@@ -24,6 +24,8 @@
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
+    <ClCompile Include="Source\SceneLogo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -73,6 +75,8 @@
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PQueue.h" />
     <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
+    <ClInclude Include="Source\SceneLogo.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
