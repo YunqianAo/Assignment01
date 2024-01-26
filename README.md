@@ -1,4 +1,4 @@
-# Assignment 3
+# Assignment 3 - Happy Worm Studios
 ![WhatsApp 图像2024-01-26于23 31 37_f0b227cb](https://github.com/YunqianAo/Assignment01/assets/79161526/b0443fb4-eaba-44b5-8c20-67b80d917142)
 ## How to operate:
 * ENTER->Start the game
