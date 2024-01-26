@@ -32,6 +32,7 @@ public:
 
 	void SetViewPort(const SDL_Rect& rect);
 	void ResetViewPort();
+	bool DrawTexture2(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL, float speed = 1.0f, double angle = 0, int pivotX = INT_MAX, int pivotY = INT_MAX, bool scalar = true) const;
 
 	bool DrawTexture(SDL_Texture* texture, int x, int y,  const SDL_Rect* section = NULL, float speed = 1.0f, double angle = 0, int pivotX = INT_MAX, int pivotY = INT_MAX) const;
 	/*bool DrawTexture(SDL_Texture* texture, int x, int y, double scale, const SDL_Rect* section = NULL, float speed = 1.0f, double angle = 0, int pivotX = INT_MAX, int pivotY = INT_MAX) const;*/

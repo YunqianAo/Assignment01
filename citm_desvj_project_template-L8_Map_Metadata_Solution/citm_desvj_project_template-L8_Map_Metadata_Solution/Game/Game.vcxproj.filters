@@ -26,6 +26,8 @@
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\itemHeal.cpp" />
     <ClCompile Include="Source\win.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
+    <ClCompile Include="Source\SceneLogo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -77,6 +79,8 @@
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\itemHeal.h" />
     <ClInclude Include="Source\win.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
+    <ClInclude Include="Source\SceneLogo.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

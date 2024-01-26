@@ -106,7 +106,7 @@ bool SceneLogo::PostUpdate()
 
 	SDL_Rect rect = { 0,0,1280,768 };
 
-	app->render->DrawTexture(textureLogo, 0, 0, &rect, 1.0f, 0.0, 2147483647, 2147483647,false);
+	app->render->DrawTexture2(textureLogo, 0, 0, &rect, 1.0f, 0.0, 2147483647, 2147483647,false);
 	app->render->DrawRectangle(rect, 0, 0, 0, (unsigned char)(255.0f * alpha));
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 	{

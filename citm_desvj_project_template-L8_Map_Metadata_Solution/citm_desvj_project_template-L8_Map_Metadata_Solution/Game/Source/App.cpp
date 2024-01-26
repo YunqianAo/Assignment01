@@ -8,7 +8,8 @@
 #include "Map.h"
 #include "Physics.h"
 #include "Pathfinding.h"
-
+#include "FadeToBlack.h"
+#include "SceneLogo.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -36,7 +37,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	//L07 DONE 2: Add Physics module
 	physics = new Physics();
+	sceneLogo = new SceneLogo();
 	scene = new Scene();
+	fade = new FadeToBlack();
 	map = new Map();
 	entityManager = new EntityManager();
 	pathfinding = new PathFinding();
@@ -53,12 +56,19 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(pathfinding);
 	AddModule(map);
+	AddModule(sceneLogo);
 	AddModule(scene);
+	AddModule(fade);
 	AddModule(entityManager);
 
 	// Render last to swap buffer
 	AddModule(render);
 
+	sceneLogo->active = true;
+	entityManager->active = false;
+	physics->active = true;
+	scene->active = false;
+	map->active = false;
 	LOG("Timer App Constructor: %f", timer.ReadMSec());
 }
 
