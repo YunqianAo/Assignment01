@@ -36,7 +36,7 @@
     <item x="1300" y="40" texturepath="Assets/Textures/tarta.png"/>
     <item x="1800" y="40" texturepath="Assets/Textures/tarta.png"/>
     <itemheal x="500" y="672" texturepath="Assets/Textures/corazon.png"/>
-	<win x="150" y="280" texturepath="Assets/Textures/corazon.png"/>
+	<win x="2950" y="250" texturepath="Assets/Textures/win.png" winpath="Assets/Audio/Fx/y2374.wav"/>
   </scene>
   
 </config>

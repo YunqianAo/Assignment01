@@ -40,7 +40,7 @@ public:
 
 
 	itemHeal* GetVida();
-
+	win* GetWin();
 
 public:
 	Player* player;

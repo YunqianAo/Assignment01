@@ -180,6 +180,10 @@ itemHeal* Scene::GetVida()
 {
 	return itemheal;
 }
+win* Scene::GetWin()
+{
+	return winn;
+}
 Player* Scene::getPlayer(){ 
 	return player;
 }

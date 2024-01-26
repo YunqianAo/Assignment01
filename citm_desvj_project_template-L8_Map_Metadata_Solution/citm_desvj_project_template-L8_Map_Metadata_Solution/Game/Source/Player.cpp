@@ -134,7 +134,13 @@ bool Player::Update(float dt)
 		
 		
 	}
+	/*if (app->scene->GetWin()->touch1 = true) {
+		SDL_Rect rect;
+		rect = { 10,10,512,512 };
 
+		texture = app->tex->Load(config.attribute("texturePath5").as_string());
+		app->render->DrawTexture(texture, 150, 100, 0.5, SDL_FLIP_NONE, &rect, 0, 0);
+	}*/
 
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
@@ -182,6 +188,10 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
 		app->audio->PlayFx(pickCoinFxId);
+		break;
+	case ColliderType::WIN:
+		LOG("Collision ITEM");
+		/*app->scene->GetWin()->touch1++;*/
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");	
