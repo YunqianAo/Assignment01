@@ -41,14 +41,17 @@ bool Item::Start() {
 }
 
 bool Item::Update(float dt)
-{
+{   
+	SDL_Rect rect;
+	rect = { 0,0,512,512 };
+
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
 	if (pbody != nullptr) {
 		b2Transform pbodyPos = pbody->body->GetTransform();
 		position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
 		position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
-	
-	app->render->DrawTexture(texture, position.x, position.y);
+		
+	    app->render->DrawTexture(texture, position.x+120, position.y+120, 0.1, SDL_FLIP_NONE, &rect, 1, 0);
 	}
 	
 	if (touch) {

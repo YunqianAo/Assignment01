@@ -126,8 +126,8 @@ bool Player::Update(float dt)
 		jumpForce = jumpForce - 5;
 		remainingJumpSteps--;
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT) {
+	
+	if (app->scene->GetVida()->vida ==0/*app->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT*/) {
 		death = 6;
 		texture = app->tex->Load(config.attribute("texturePath5").as_string());
 		currentAnim1 = &downAnim1;
