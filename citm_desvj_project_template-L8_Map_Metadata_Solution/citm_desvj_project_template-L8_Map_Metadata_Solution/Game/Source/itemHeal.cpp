@@ -20,8 +20,6 @@ itemHeal::~itemHeal() {}
 
 bool itemHeal::Awake() {
 
-	/*position.x = parameters.attribute("x").as_int();
-	position.y = parameters.attribute("y").as_int();*/
 	texturePath = parameters.attribute("texturepath").as_string();
 	return true;
 }
@@ -37,15 +35,13 @@ bool itemHeal::Start() {
 
 	//// L07 DONE 7: Assign collider type
 	//pbody->ctype = ColliderType::ITEM;
+
 	return true;
 }
 
 bool itemHeal::Update(float dt)
 {
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
-
-
-
 
 	SDL_Rect rect;
 	rect = {10,10,512,512};

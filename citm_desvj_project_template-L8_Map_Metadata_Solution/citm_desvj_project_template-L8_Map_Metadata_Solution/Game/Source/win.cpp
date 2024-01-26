@@ -46,25 +46,8 @@ bool win::Start() {
 bool win::Update(float dt)
 {
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
-
-
 	SDL_Rect rect;
 	rect = { 10,10,512,512 };
-
-	
-
-	
-
-	/*for (int i = 0; i < vida; i++)
-	{
-		app->render->DrawTexture(texture, 10 + i * 20, 1, 0.1, SDL_FLIP_NONE, &rect, 0, 0);
-	}*/
-
-	//if (touch1 = true) {
-	//	/*texture = app->tex->Load(texturePath);
-	//	app->render->DrawTexture(texture, 150, 100, 0.5, SDL_FLIP_NONE, &rect, 0, 0);*/
-	//	/*app->audio->PlayFx(pickCoinFxId);*/
-	//}
 	for (int i = 0; i < touch1; i++)
 	{
 		app->render->DrawTexture(texture, 150 + i * 20, 1, 1, SDL_FLIP_NONE, &rect, 0, 0);
@@ -85,13 +68,9 @@ void win::OnCollision(PhysBody* physA, PhysBody* physB) {
 	switch (physB->ctype)
 	{
 	case ColliderType::PLAYER:
-		/*app->scene->GetVida()->vida++;*/
-		/*touch1 = true;*/
+
 		app->audio->PlayFx(pickCoinFxId);
-		/*SDL_Rect rect;
-		rect = { 10,10,512,512 };
-		texture = app->tex->Load(texturePath);
-		app->render->DrawTexture(texture, 150, 100, 0.5, SDL_FLIP_NONE, &rect, 0, 0);*/
+
 		touch1++;
 		LOG("Collision touch1");
 		break;

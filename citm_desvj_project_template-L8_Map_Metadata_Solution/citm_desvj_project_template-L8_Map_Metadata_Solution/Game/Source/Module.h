@@ -56,12 +56,6 @@ public:
 	}
 
 	void Enable() {
-		//if (!isEnabled)
-		//{
-		//	isEnabled = true;
-		//	Start();
-		//}
-
 		if (!active)
 		{
 			active = true;
@@ -71,12 +65,6 @@ public:
 
 	// Switches isEnabled and calls CleanUp() method
 	void Disable() {
-		/*	if (isEnabled)
-			{
-				isEnabled = false;
-				CleanUp();
-			}*/
-
 		if (active)
 		{
 			active = false;

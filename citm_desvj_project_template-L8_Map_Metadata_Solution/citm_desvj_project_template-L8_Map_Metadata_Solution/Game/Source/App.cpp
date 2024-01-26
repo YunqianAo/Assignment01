@@ -370,5 +370,3 @@ const char* App::GetOrganization() const
 {
 	return organization.GetString();
 }
-
-

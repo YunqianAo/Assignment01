@@ -312,9 +312,6 @@ iPoint Map::MapToWorld(int x, int y) const
 {
     iPoint ret;
 
-    /*ret.x = x * mapData.tilewidth;
-    ret.y = y * mapData.tileheight;*/
-
     // L09: DONE 3: Get the screen coordinates of tile positions for isometric maps 
     if (mapData.orientation == MapOrientation::ORTOGRAPHIC) {
         ret.x = x * mapData.tilewidth;

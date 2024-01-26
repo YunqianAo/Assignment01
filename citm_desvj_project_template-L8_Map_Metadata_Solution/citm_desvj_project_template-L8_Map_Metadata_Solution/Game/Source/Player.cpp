@@ -127,36 +127,23 @@ bool Player::Update(float dt)
 		remainingJumpSteps--;
 	}
 	
-	if (app->scene->GetVida()->vida ==0/*app->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT*/) {
+	if (app->scene->GetVida()->vida ==0) {
 		death = 6;
 		texture = app->tex->Load(config.attribute("texturePath5").as_string());
 		currentAnim1 = &downAnim1;
 		
 		
 	}
-	/*if (app->scene->GetWin()->touch1 = true) {
-		SDL_Rect rect;
-		rect = { 10,10,512,512 };
 
-		texture = app->tex->Load(config.attribute("texturePath5").as_string());
-		app->render->DrawTexture(texture, 150, 100, 0.5, SDL_FLIP_NONE, &rect, 0, 0);
-	}*/
 
 	pbody->body->SetLinearVelocity(velocity);
 	b2Transform pbodyPos = pbody->body->GetTransform();
 	position.x = METERS_TO_PIXELS(pbodyPos.p.x) - texH / 2;
 	position.y = METERS_TO_PIXELS(pbodyPos.p.y) - texH / 2;
-	/*app->render->DrawTexture(texture,position.x,position.y);*/
 	app->render->camera.x = -position.x*3+200;
 	app->render->camera.y = -position.y * 3 + 200;
 	LOG("%d,%d", position.x, position.y);
 
-	//Intento de hacer que la camara cambie a cierta altura
-	//if (position.y >= 379)
-	//{
-	//	app->render->camera.y = -600;
-	//}
-	//
 	currentAnim1->Update();
 	return true;
 }
@@ -191,7 +178,6 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		break;
 	case ColliderType::WIN:
 		LOG("Collision ITEM");
-		/*app->scene->GetWin()->touch1++;*/
 		break;
 	case ColliderType::UNKNOWN:
 		LOG("Collision UNKNOWN");	

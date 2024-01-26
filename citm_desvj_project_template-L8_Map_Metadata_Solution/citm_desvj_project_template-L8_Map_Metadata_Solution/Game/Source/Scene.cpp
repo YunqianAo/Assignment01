@@ -35,10 +35,6 @@ bool Scene::Awake(pugi::xml_node config)
 	//Assigns the XML node to a member in player
 	player->config = config.child("player");
 
-	/*enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
-	
-	enemy->config = config.child("enemy");*/
-
 	//Get the map name from the config file and assigns the value in the module
 	app->map->name = config.child("map").attribute("name").as_string();
 	app->map->path = config.child("map").attribute("path").as_string();
@@ -65,7 +61,6 @@ bool Scene::Awake(pugi::xml_node config)
 	{
 		enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::ENEMY);
 		
-		/*enemy->config = config.child("enemy");*/
 		enemy->parameters = itemNode;
 	}
 
@@ -139,7 +134,6 @@ bool Scene::Update(float dt)
 
 	//If mouse button is pressed modify player position
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-		/*player->position = iPoint(highlightedTileWorld.x, highlightedTileWorld.y);*/
 		app->map->pathfinding->CreatePath(origin, mouseTile);
 	}
 

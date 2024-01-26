@@ -106,7 +106,7 @@ void Render::ResetViewPort()
 	SDL_RenderSetViewport(renderer, &viewport);
 }
 
-bool Render::DrawTexture2(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY, bool scalar) const
+bool Render::DrawTexture2(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY, bool scalar) const //Función a la que añadi un booleano , para poder decir si queria usar la escala del config o no,sirve para el printar bien la imagen del logo, by Sergio
 {
 	bool ret = true;
 	uint scale = app->win->GetScale();
@@ -190,46 +190,6 @@ bool Render::DrawTexture(SDL_Texture* texture, int x, int y, const SDL_Rect* sec
 
 	return ret;
 }
-//bool Render::DrawTexture(SDL_Texture* texture, int x, int y, double scale, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY) const
-//{
-//	bool ret = true;
-//	/*uint scale = app->win->GetScale();*/
-//
-//	SDL_Rect rect;
-//	rect.x = (int)(camera.x * speed) + x * scale;
-//	rect.y = (int)(camera.y * speed) + y * scale;
-//
-//	if (section != NULL)
-//	{
-//		rect.w = section->w;
-//		rect.h = section->h;
-//	}
-//	else
-//	{
-//		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
-//	}
-//
-//	rect.w *= scale;
-//	rect.h *= scale;
-//
-//	SDL_Point* p = NULL;
-//	SDL_Point pivot;
-//
-//	if (pivotX != INT_MAX && pivotY != INT_MAX)
-//	{
-//		pivot.x = pivotX;
-//		pivot.y = pivotY;
-//		p = &pivot;
-//	}
-//
-//	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, p, SDL_FLIP_NONE) != 0)
-//	{
-//		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
-//		ret = false;
-//	}
-//
-//	return ret;
-//}
 
 
 bool Render::DrawTexture(SDL_Texture* texture, int x, int y,  SDL_RendererFlip flip, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY) const
@@ -276,7 +236,6 @@ bool Render::DrawTexture(SDL_Texture* texture, int x, int y,  SDL_RendererFlip f
 bool Render::DrawTexture(SDL_Texture* texture, int x, int y, double scale, SDL_RendererFlip flip, const SDL_Rect* section, float speed, double angle, int pivotX, int pivotY) const
 {
 	bool ret = true;
-	//uint scale = app->win->GetScale();
 
 	SDL_Rect rect;
 	rect.x = (int)(camera.x * speed) + x * app->win->GetScale();
@@ -344,19 +303,10 @@ bool Render::DrawTexture(SDL_Texture* texture, int x, int y, double scale, SDL_R
 
 	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, &center, flip) != 0)
 
-		//Sin el flip
-		//if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
-
-
-	//if (app->debug) {// && showRect
-	//	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	//	SDL_RenderDrawRect(renderer, &rect);
-	//}
-
 
 	return ret;
 }
@@ -397,12 +347,6 @@ bool Render::DrawTexture(SDL_Texture* texture, int x, int y, double scale, SDL_R
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
-
-
-	//if (app->debug) {// && showRect
-	//	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	//	SDL_RenderDrawRect(renderer, &rect);
-	//}
 
 
 	return ret;

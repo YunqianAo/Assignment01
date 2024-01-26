@@ -29,13 +29,13 @@ bool FadeToBlack::Start()
 	LOG("Preparing Fade Screen");
 
 	// Enable blending mode for transparency
-//	SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
+	//SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
 }
 
 bool FadeToBlack::Update(float dt)
 {
-	dt = dt / 1000;
+	dt = dt / 1000;//lo divido para que el fade se haga mas lento
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return true;
 
@@ -46,12 +46,6 @@ bool FadeToBlack::Update(float dt)
 		if (alpha > 1.00f)
 		{
 			moduleToDisable->Disable();
-
-			/*if (moduleToEnable->name == "scene")
-			{
-				app->entityManager->Enable();
-				app->map->Enable();
-			}*/
 
 			moduleToEnable->Enable();
 			if (moduleToEnable->name == "scene")
