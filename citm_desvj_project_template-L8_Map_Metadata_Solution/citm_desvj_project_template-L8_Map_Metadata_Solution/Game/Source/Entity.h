@@ -12,6 +12,7 @@ enum class EntityType
 	ENEMY,
 	ITEM,
 	ITEMHEAL,
+	WIN,
 	UNKNOWN
 };
 

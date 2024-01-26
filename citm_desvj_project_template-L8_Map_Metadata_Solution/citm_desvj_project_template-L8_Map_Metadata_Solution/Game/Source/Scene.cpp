@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Item.h"
 #include "itemHeal.h"
+#include "win.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -54,6 +55,11 @@ bool Scene::Awake(pugi::xml_node config)
 	{
 		itemheal = (itemHeal*)app->entityManager->CreateEntity(EntityType::ITEMHEAL);
 		itemheal->parameters = itemNode;
+	}
+	for (pugi::xml_node itemNode = config.child("win"); itemNode; itemNode = itemNode.next_sibling("win"))
+	{
+		winn = (win*)app->entityManager->CreateEntity(EntityType::WIN);
+		winn->parameters = itemNode;
 	}
 	for (pugi::xml_node itemNode = config.child("enemy"); itemNode; itemNode = itemNode.next_sibling("enemy"))
 	{

@@ -5,6 +5,7 @@
 #include "Player.h"
 #include"Enemy.h"
 #include"itemHeal.h"
+#include "win.h"
 
 struct SDL_Texture;
 
@@ -45,6 +46,7 @@ public:
 	Player* player;
 
 	itemHeal* itemheal;
+	win* winn;
 
 private:
 	SDL_Texture* img;

@@ -25,6 +25,7 @@
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\itemHeal.cpp" />
+    <ClCompile Include="Source\win.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Source\PQueue.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\itemHeal.h" />
+    <ClInclude Include="Source\win.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "Enemy.h"
 #include "itemHeal.h"
+#include "win.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -96,6 +97,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		break;
 	case EntityType::ITEMHEAL:
 		entity = new itemHeal();
+		break;
+	case EntityType::WIN:
+		entity = new win();
 		break;
 	default:
 		break;
