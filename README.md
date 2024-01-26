@@ -1,5 +1,6 @@
 # Assignment01
 ## How to operate:
+* ENTER->Start the game
 * A->Left
 * D->Right
 * SPACE->Jump
