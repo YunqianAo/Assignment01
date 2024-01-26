@@ -55,11 +55,43 @@ public:
 		return true;
 	}
 
+	void Enable() {
+		//if (!isEnabled)
+		//{
+		//	isEnabled = true;
+		//	Start();
+		//}
+
+		if (!active)
+		{
+			active = true;
+			Start();
+		}
+	}
+
+	// Switches isEnabled and calls CleanUp() method
+	void Disable() {
+		/*	if (isEnabled)
+			{
+				isEnabled = false;
+				CleanUp();
+			}*/
+
+		if (active)
+		{
+			active = false;
+			CleanUp();
+		}
+	}
+	inline bool IsEnabled() const { return isEnabled; }
+
 public:
 
 	SString name;
 	bool active;
 
+private:
+	bool isEnabled = true;
 };
 
 #endif // __MODULE_H__

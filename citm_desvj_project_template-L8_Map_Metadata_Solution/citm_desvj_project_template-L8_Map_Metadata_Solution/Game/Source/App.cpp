@@ -5,9 +5,11 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Scene.h"
+#include "SceneLogo.h"
 #include "Map.h"
 #include "Physics.h"
 #include "Pathfinding.h"
+#include "FadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -36,28 +38,45 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	//L07 DONE 2: Add Physics module
 	physics = new Physics();
-	scene = new Scene();
-	map = new Map();
-	entityManager = new EntityManager();
 	pathfinding = new PathFinding();
+	sceneLogo = new SceneLogo(); 
+	scene = new Scene();
+	fade = new FadeToBlack();
+	map = new Map();
+	
+	entityManager = new EntityManager();
+	
 
 
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
-	AddModule(win);
 	AddModule(input);
+	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
 	AddModule(pathfinding);
-	AddModule(map);
+
+	AddModule(sceneLogo);
 	AddModule(scene);
+	AddModule(fade);
 	AddModule(entityManager);
+	AddModule(map);
+
+	
+	AddModule(render);
+
+	//Desactivamos modulos para hacer intro
+	sceneLogo->active = true;
+	entityManager->active = false;
+	physics->active = false;
+	scene->active = false;
+	map->active = false;
 
 	// Render last to swap buffer
-	AddModule(render);
+	
 
 	LOG("Timer App Constructor: %f", timer.ReadMSec());
 }

@@ -1,6 +1,6 @@
 #include "Physics.h"
 #include "Input.h"
-#include "app.h"
+#include "App.h"
 #include "Log.h"
 #include "math.h"
 #include "SDL/include/SDL_keycode.h"

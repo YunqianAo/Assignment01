@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\itemHeal.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Render.cpp" />
+    <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\win.cpp" />
@@ -118,6 +120,7 @@
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\itemHeal.h" />
     <ClInclude Include="Source\Map.h" />
@@ -133,6 +136,7 @@
     <ClInclude Include="Source\App.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Render.h" />
+    <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\Textures.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\win.h" />
